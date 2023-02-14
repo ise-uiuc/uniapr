@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example</groupId>
+  <artifactId>test</artifactId>
+  <version>1.0.0</version>
+  <inceptionYear>2008</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <dependencies>
+    <dependency>
+      <groupId>net.sourceforge.cobertura</groupId>
+      <artifactId>cobertura</artifactId>
+      <version>2.0.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.bytebuddy</groupId>
+      <artifactId>byte-buddy</artifactId>
+      <version>0.6.8</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>1.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.objenesis</groupId>
+      <artifactId>objenesis</artifactId>
+      <version>2.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>13.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <version>1.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>5.0.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>1.10.19</version>
+      
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-easymock</artifactId>
+      <version>1.6.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+<build>
+    <sourceDirectory>src</sourceDirectory>
+<testSourceDirectory>test</testSourceDirectory>
+<plugins>
+
+<plugin>
+  <groupId>org.mudebug</groupId>
+  <artifactId>prapr-plugin</artifactId>
+  <version>2.0.0</version>
+  <configuration>
+    <threads>4</threads>
+    <mutators>
+      <mutator>ALL</mutator>
+    </mutators>
+  <failingTests>
+    <failingTest>org.mockitousage.bugs.InjectMocksShouldTryPropertySettersFirstBeforeFieldAccessTest::shouldInjectUsingPropertySetterIfAvailable</failingTest>
+  </failingTests>
+  <targetClasses>
+                        <param>org.mockito.*</param>
+                    </targetClasses>
+                  
+<targetTests>
+ <param>*Test</param>
+</targetTests>
+    <outputFormats>
+      <param>COMPRESSED-XML</param>
+    </outputFormats>
+  </configuration>
+</plugin>
+
+
+  
+<plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <targetClasses>
+                        <param>org.mockito.*</param>
+                    </targetClasses>
+                  
+<targetTests>
+ <param>*Test</param>
+</targetTests><threads>4</threads>
+
+ 
+                        <mutators>
+                                <mutator>ALL</mutator>
+                        </mutators>
+                        <outputFormats>
+                        <param>XML</param>
+                        <param>html</param>
+                        </outputFormats>
+                    
+</configuration>
+            </plugin>
+
+
+
+</plugins>
+
+
+
+
+  <outputDirectory>target/classes</outputDirectory><testOutputDirectory>target/test-classes</testOutputDirectory></build>
+</project>

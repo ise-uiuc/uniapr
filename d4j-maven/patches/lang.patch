@@ -1,0 +1,11 @@
+--- ./src/test/org/apache/commons/lang/builder/StandardToStringStyleTest.java.bak	2022-06-20 17:42:54.000000000 -0500
++++ ./src/test/org/apache/commons/lang/builder/StandardToStringStyleTest.java	2022-06-20 17:53:46.000000000 -0500
+@@ -75,7 +75,7 @@
+     @Override
+     protected void tearDown() throws Exception {
+         super.tearDown();
+-        ToStringBuilder.setDefaultStyle(STYLE);
++        ToStringBuilder.setDefaultStyle(org.apache.commons.lang.builder.ToStringStyle.DEFAULT_STYLE);
+     }
+ 
+     //----------------------------------------------------------------

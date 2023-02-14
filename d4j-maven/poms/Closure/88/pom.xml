@@ -1,0 +1,274 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.google.javascript</groupId>
+  <artifactId>closure-compiler</artifactId>
+  <packaging>jar</packaging>
+
+  <name>Closure Compiler</name>
+  <version>r@build.svnVersion@</version>
+
+  <url>http://code.google.com/p/closure-compiler/</url>
+  <description>
+    Closure Compiler is a JavaScript optimizing compiler. It parses your
+    JavaScript, analyzes it, removes dead code and rewrites and minimizes
+    what's left. It also checks syntax, variable references, and types, and
+    warns about common JavaScript pitfalls. It is used in many of Google's
+    JavaScript apps, including Gmail, Google Web Search, Google Maps, and
+    Google Docs.
+  </description>
+  <inceptionYear>2009</inceptionYear>
+ <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+    <jdk.version>1.6</jdk.version>
+    
+    <compiler.date>${maven.build.timestamp}</compiler.date>
+    <maven.build.timestamp.format>yyyy-MM-dd HH\:mm</maven.build.timestamp.format>
+    <compiler.version>${project.version}</compiler.version>
+  </properties>
+  <scm>
+    <connection>
+      scm:svn:http://closure-compiler.googlecode.com/svn/trunk
+    </connection>
+    <developerConnection>
+      scm:svn:https://closure-compiler.googlecode.com/svn/trunk
+    </developerConnection>
+    <url>
+      http://code.google.com/p/closure-compiler/source/browse/#svn/trunk
+    </url>
+  </scm>
+
+  <issueManagement>
+    <system>code.google.com</system>
+    <url>http://code.google.com/p/closure-compiler/issues</url>
+  </issueManagement>
+
+  <organization>
+    <name>Google</name>
+    <url>http://www.google.com</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <layout>default</layout>
+      <url>https://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>caja</id>
+      <url>http://google-caja.googlecode.com/svn/maven</url>
+    </repository>
+  </repositories>
+
+  <developers>
+    <developer>
+      <id>johnlenz</id>
+      <name>John Lenz</name>
+      <email>concavelenz@gmail.com</email>
+    </developer>
+    <developer>
+      <id>nicksantos</id>
+      <name>Nick Santos</name>
+      <email>nicholas.j.santos@gmail.com</email>
+    </developer>
+
+    <developer>
+      <id>acleung</id>
+      <name>Alan Leung</name>
+      <email>acleung@gmail.com</email>
+    </developer>
+
+    <developer>
+      <id>mbolin</id>
+      <name>Michael Bolin</name>
+      <email>mbolin@alum.mit.edu</email>
+    </developer>
+
+    <developer>
+      <id>plindner</id>
+      <name>Paul Lindner</name>
+      <email>lindner@inuus.com</email>
+    </developer>
+  </developers>
+
+  <dependencies>
+  <dependency>
+    <groupId>rhino</groupId>
+    <artifactId>rhino</artifactId>
+<version>1.88</version></dependency>
+ <dependency>
+    <groupId>rhino</groupId>
+    <artifactId>rhino</artifactId>
+<version>1.88</version></dependency>
+    <dependency>
+      <groupId>args4j</groupId>
+      <artifactId>args4j</artifactId>
+      <version>2.0.16</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>13.0.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>2.4.1</version>
+    <scope>system</scope><systemPath>${project.basedir}/lib/protobuf-java.jar</systemPath></dependency>
+
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20090211</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.8.2</version>
+      <scope>compile</scope>
+    </dependency>
+<dependency>
+    <groupId>com.google.javascript</groupId>
+    <artifactId>closure-compiler</artifactId>
+    <version>rr2079.1</version>
+</dependency>
+ 
+
+    <dependency>
+      <groupId>com.googlecode.jarjar</groupId>
+      <artifactId>jarjar</artifactId>
+      <version>1.1</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+    </dependency>
+
+    <dependency>
+      <groupId>caja</groupId>
+      <artifactId>caja</artifactId>
+      <version>r4314</version>
+    </dependency>
+	
+
+  </dependencies>
+  <build>
+   <plugins>
+<plugin>
+	<groupId>org.mudebug</groupId>
+	<artifactId>prapr-plugin</artifactId>
+	<version>2.0.0</version>
+	<configuration>
+		<threads>8</threads>
+		<mutators>
+			<mutator>ALL</mutator>
+		</mutators>
+	<failingTests>
+		<failingTest>com.google.javascript.jscomp.CommandLineRunnerTest::testIssue297</failingTest>
+		<failingTest>com.google.javascript.jscomp.DeadAssignmentsEliminationTest::testIssue297a</failingTest>
+		<failingTest>com.google.javascript.jscomp.DeadAssignmentsEliminationTest::testIssue297b</failingTest>
+		<failingTest>com.google.javascript.jscomp.DeadAssignmentsEliminationTest::testIssue297c</failingTest>
+		<failingTest>com.google.javascript.jscomp.DeadAssignmentsEliminationTest::testIssue297d</failingTest>
+		<failingTest>com.google.javascript.jscomp.DeadAssignmentsEliminationTest::testIssue297e</failingTest>
+		<failingTest>com.google.javascript.jscomp.DeadAssignmentsEliminationTest::testIssue297f</failingTest>
+	</failingTests>
+		<outputFormats>
+			<param>COMPRESSED-XML</param>
+		</outputFormats>
+	</configuration>
+</plugin>
+<plugin>
+<artifactId>maven-resources-plugin</artifactId>
+<version>2.6</version>
+<executions>
+<execution>
+<id>copy-resources01</id>
+<phase>process-classes</phase>
+<goals>
+<goal>copy-resources</goal>
+</goals>
+<configuration>
+<outputDirectory>build/classes</outputDirectory>
+<encoding>UTF-8</encoding>
+<resources>
+ <resource>
+ <directory>src</directory>
+<includes>
+<include>**/*.properties</include>
+<include>**/*.js</include>
+</includes>
+</resource>
+</resources>
+</configuration>
+</execution>
+</executions>
+</plugin>
+  <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.1.5-SNAPSHOT_TestCoverLineNumber</version>
+                <configuration>
+                    <targetClasses>
+                        <param>com.google.javascript.*</param>
+                    </targetClasses>
+                  
+<targetTests>
+ <param>*Test</param>
+</targetTests><threads>2</threads>
+
+ 
+                        <mutators>
+                                <mutator>ALL</mutator>
+                        </mutators>
+                        <outputFormats>
+                        <param>XML</param>
+                        <param>html</param>
+                        </outputFormats>
+                    
+                </configuration>
+            </plugin>
+   
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+<version>2.18</version>
+        <configuration>
+          
+          <argLine>-Xmx1G</argLine>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.1</version>
+          <configuration>
+            <source>${jdk.version}</source>
+            <target>${jdk.version}</target>
+            <showDeprecation>true</showDeprecation>
+            <compilerArgument>-Xlint:unchecked,deprecation,fallthrough,finally</compilerArgument>
+            <fork>true</fork>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
+      </plugin>      
+    </plugins>
+  <sourceDirectory>src</sourceDirectory><testSourceDirectory>test</testSourceDirectory><outputDirectory>build/classes</outputDirectory><testOutputDirectory>build/test</testOutputDirectory></build>
+</project>
