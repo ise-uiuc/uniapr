@@ -27,7 +27,7 @@ public class HotSwapAgent
 		System.out.println("Installing UniAPR agent");
 		instrumentation = inst;
 		try {
-			instrumentation.appendToBootstrapClassLoaderSearch(new JarFile(System.getProperty("user.home") + "/.m2/repository/org/uniapr/uniapr-plugin/1.0-SNAPSHOT/uniapr-plugin-1.0-SNAPSHOT.jar"));
+			instrumentation.appendToBootstrapClassLoaderSearch(new JarFile(System.getProperty("user.home") + "/.m2/repository/org/uniapr/uniapr-plugin/1.1/uniapr-plugin-1.1.jar"));
 		} catch (Throwable t){
 			t.printStackTrace();
 		}
